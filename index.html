@@ -138,10 +138,10 @@
       snake.forEach((seg, i) => {
         const isHead = i === 0;
         const t = i / snake.length;
-        // Green gradient: bright at head, darker at tail
-        const r = 0;
+        // Yellow gradient: bright at head, darker at tail
+        const r = Math.round(255 - t * 40);
         const g = Math.round(220 - t * 100);
-        const b = Math.round(t * 30);
+        const b = 0;
         ctx.fillStyle = `rgb(${r},${g},${b})`;
 
         const padding = isHead ? 1 : 2;
@@ -160,6 +160,7 @@
           ctx.fillStyle = '#1a1a1a';
           const ex = seg.x * CELL;
           const ey = seg.y * CELL;
+          // Position eyes based on direction
           const eyes = getEyePositions(ex, ey, dir);
           eyes.forEach(([ex2, ey2]) => {
             ctx.beginPath();
